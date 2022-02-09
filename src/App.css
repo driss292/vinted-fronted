@@ -1,1 +1,21 @@
 /* Other rules */
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 1280px;
+  display: flex;
+  justify-content: s;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container img {
+  width: 235px;
+  height: 360px;
+  object-fit: cover;
+  margin: 5px;
+}
