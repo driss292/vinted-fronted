@@ -27,10 +27,10 @@ const Home = () => {
   ) : (
     <div className="container">
       {data.offers.map((offer, index) => {
-        const id = offer.product_image.asset_id;
+        const id = offer._id;
         return (
           <div key={index}>
-            <Link to={`/offer/${id}`} data={data}>
+            <Link to={`/offer/${id}`}>
               <img src={offer.product_image.url} alt="" />
             </Link>
           </div>

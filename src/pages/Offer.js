@@ -1,4 +1,5 @@
-import { useParams, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const Offer = () => {
@@ -10,7 +11,7 @@ const Offer = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://lereacteur-vinted-api.herokuapp.com/offers/offer/${id}`
+          `https://lereacteur-vinted-api.herokuapp.com/offer/${id}`
         );
         console.log(response.data);
         setData(response.data);
@@ -26,7 +27,10 @@ const Offer = () => {
     <span>En cours de chargement</span>
   ) : (
     <div>
-      <h1>Hello</h1>
+      <h1>
+        <p>{data.product_name}</p>
+        <img src={data.product_image.secure_url} alt="" />
+      </h1>
     </div>
   );
 };
