@@ -3,22 +3,32 @@ import Cookies from "react";
 import axios from "axios";
 
 const Signup = () => {
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    const signupForm = {
-      username: { username },
-      email: { email },
-      password: { password },
-      newsletter: true,
-    };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    const response = axios.post(
-      `https://lereacteur-vinted-api.herokuapp.com/user/signup`
-    );
+    try {
+      const userInfos = {
+        username: username,
+        email: email,
+        password: password,
+        newsletter: true,
+      };
+      const response = await axios.post(
+        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
+        userInfos
+      );
+      console.log(response.data);
+      console.log(token);
+      const token = response.data.token;
+      Cookies.set("token", token);
+    } catch (error) {
+      console.log(error.response);
+    }
   };
 
   return (
@@ -52,7 +62,7 @@ const Signup = () => {
             setPassword(value);
           }}
         />
-        <input type="checkbox" value={"newsletter"} />
+        <input type="checkbox" />
         <button type="submit">S'inscrire</button>
       </form>
     </div>
