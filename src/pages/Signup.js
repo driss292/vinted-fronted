@@ -1,33 +1,36 @@
-import { useState } from "react";
-import Cookies from "react";
 import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
-  const [data, setData] = useState();
+const Signup = ({ setUser }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [newsletter, setNewsletter] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
-    event.preventDefault();
-
     try {
-      const userInfos = {
-        username: username,
-        email: email,
-        password: password,
-        newsletter: true,
-      };
+      event.preventDefault();
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        userInfos
+        {
+          email: email,
+          username: username,
+          password: password,
+          newsletter: newsletter,
+        }
       );
-      console.log(response.data);
-      console.log(token);
-      const token = response.data.token;
-      Cookies.set("token", token);
+      // console.log(response.data);
+      if (response.data.token) {
+        setUser(response.data.token);
+        navigate("/");
+      }
     } catch (error) {
       console.log(error.response);
+      if (error.response.status === 409) {
+        setErrorMessage("Cet email a déjà un compte");
+      }
     }
   };
 
@@ -38,32 +41,26 @@ const Signup = () => {
         <input
           type="text"
           placeholder="Nom d'utilisateur"
-          value={username}
-          onChange={(event) => {
-            const value = event.target.value;
-            setUsername(value);
-          }}
+          onChange={(event) => setUsername(event.target.value)}
         />
         <input
           type="email"
           placeholder="Email"
-          value={email}
-          onChange={(event) => {
-            const value = event.target.value;
-            setEmail(value);
-          }}
+          onChange={(event) => setEmail(event.target.value)}
         />
         <input
           type="password"
           placeholder="Mot de passe"
-          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        <input
+          type="checkbox"
           onChange={(event) => {
-            const value = event.target.value;
-            setPassword(value);
+            setNewsletter(event.target.checked);
           }}
         />
-        <input type="checkbox" />
         <button type="submit">S'inscrire</button>
+        <span>{errorMessage}</span>
       </form>
     </div>
   );
