@@ -199,6 +199,24 @@
   margin: auto;
   justify-content: space-around;
 }
+.signup-logout {
+  width: 250px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  justify-content: space-around;
+}
+.signup-logout button {
+  width: 115px;
+  height: 30px;
+  background-color: #c2175b;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 12px;
+  border: none;
+}
+
 .signup-login button {
   width: 115px;
   height: 30px;
