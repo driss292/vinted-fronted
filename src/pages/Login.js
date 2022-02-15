@@ -14,7 +14,10 @@ const Login = ({ setUser }) => {
       event.preventDefault();
       const response = await axios.post(
         "https://lereacteur-vinted-api.herokuapp.com/user/login",
-        { email: email, password: password }
+        {
+          email: email,
+          password: password,
+        }
       );
       console.log(response.data);
       if (response.data.token) {
@@ -22,8 +25,9 @@ const Login = ({ setUser }) => {
         navigate("/");
       }
     } catch (error) {
+      console.log(error.message);
       console.log(error.response);
-      if (error.response.status === 400 || error.respnse.status === 401) {
+      if (error.response.status === 400 || error.response.status === 401) {
         setErrorMessage("Mauvais email et/ou mot de passe");
       }
     }
@@ -32,7 +36,7 @@ const Login = ({ setUser }) => {
   return (
     <div className="login-container">
       <h2>Se connecter</h2>
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Adresse email"
@@ -49,10 +53,11 @@ const Login = ({ setUser }) => {
             setPassword(value);
           }}
         />
-        <button onSubmit={handleSubmit}>Se connecter</button>
+        <button type="submit">Se connecter</button>
         <span>{errorMessage}</span>
       </form>
     </div>
   );
 };
+
 export default Login;

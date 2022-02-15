@@ -269,13 +269,17 @@
 /* OFFER */
 
 .offer-body {
-  width: 1920px;
-  min-height: 100vh;
+  /* width: 1920px; */
+  /* min-height: 100vh; */
   display: flex;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   background-color: #ebedee;
 }
+.offer-body button {
+  cursor: pointer;
+}
+
 .offer-container {
   width: 1340px;
   height: 665px;
@@ -339,4 +343,54 @@
 
 .offer-info .offer-content-2 p {
   color: #666;
+}
+
+/* PUBLISH */
+
+.publish-container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.publish-block {
+  width: 100%;
+  margin: 25px 0;
+}
+.publish-block.file-input {
+  height: 250px;
+  padding: 24px;
+}
+
+.publish-block input {
+  width: 100%;
+  height: 70px;
+}
+.publish-block textarea {
+  width: 100%;
+  height: 150px;
+  resize: none;
+}
+
+/* PAYMENT */
+
+.payment-block {
+  width: 600px;
+  height: 555px;
+  background-color: #fff;
+}
+.payment-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ebedee;
+}
+
+.payment-card-infos {
+  height: 315px;
 }

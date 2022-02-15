@@ -24,7 +24,9 @@ const Header = ({ token, setUser }) => {
             <Button />
           )}
           <div className="sell">
-            <button>Vends tes articles</button>
+            <Link to={"/publish"}>
+              <button>Vends tes articles</button>
+            </Link>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ const Signup = ({ setUser }) => {
   const [newsletter, setNewsletter] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
